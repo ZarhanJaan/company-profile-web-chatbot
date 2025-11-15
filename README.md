@@ -4,6 +4,7 @@ Program ini mengimplementasikan Machine Learning dengan model klasifikasi Multin
 Program ini nantinya memprediksi intent dari input user, lalu mengambil jawaban yang sesuai dari daftar jawaban.
 
 knowledge_base.json:
+
 <img width="388" height="462" alt="image" src="https://github.com/user-attachments/assets/09159aaa-987a-4cf8-8125-f0c33f07808a" />
 knowledge_base.json digunakan untuk pemetaan dataset yang nantinya digunakan untuk program memprediksi jawaban yang sesuai dari list yang ada.
 
