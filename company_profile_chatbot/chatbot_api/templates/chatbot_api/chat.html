@@ -3,62 +3,79 @@
 <head>
   <title>Floating Chatbot</title>
   <style>
-    body { font-family: Arial, sans-serif; }
+  /* Ikon toggle di pojok kanan bawah */
+  #chatbot-toggle {
+    position: fixed;
+    bottom: 20px;   /* jarak dari bawah */
+    right: 20px;    /* jarak dari kanan */
+    background: #007bff;
+    color: white;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 9999;
+  }
 
-    /* Floating widget */
-    #chatbot-widget {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 300px;
-      height: 400px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      background: #fff;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      display: flex;
-      flex-direction: column;
-      z-index: 9999; /* supaya di atas konten lain */
-    }
+  /* Widget chat */
+  #chatbot-widget {
+    position: fixed;
+    bottom: 80px;   /* muncul di atas ikon toggle */
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    display: none; /* default tersembunyi */
+    flex-direction: column;
+    z-index: 9999;
+  }
 
-    #chatbot-header {
-      background: #007bff;
-      color: white;
-      padding: 8px;
-      text-align: center;
-      font-weight: bold;
-      cursor: pointer;
-    }
+  #chatbot-header {
+    background: #007bff;
+    color: white;
+    padding: 8px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+  }
 
-    #chatbox {
-      flex: 1;
-      padding: 8px;
-      overflow-y: auto;
-      font-size: 14px;
-    }
+  #chatbox {
+    flex: 1;
+    padding: 8px;
+    overflow-y: auto;
+    font-size: 14px;
+  }
 
-    #chatbot-input {
-      border: none;
-      border-top: 1px solid #ccc;
-      padding: 8px;
-      width: calc(100% - 60px);
-    }
+  #chatbot-input {
+    border: none;
+    border-top: 1px solid #ccc;
+    padding: 8px;
+    width: calc(100% - 60px);
+  }
 
-    #send-btn {
-      width: 50px;
-      border: none;
-      background: #007bff;
-      color: white;
-      cursor: pointer;
-    }
+  #send-btn {
+    width: 50px;
+    border: none;
+    background: #007bff;
+    color: white;
+    cursor: pointer;
+  }
 
-    .user { color: blue; }
-    .bot { color: green; }
-  </style>
+  .user { color: blue; }
+  .bot { color: green; }
+</style>
 </head>
 <body>
   <h2>Halaman Utama Website</h2>
   <p>Konten lain tetap bisa ditampilkan di sini.</p>
+
+  <div id="chatbot-toggle">💬</div>
 
   <!-- Floating Chatbot -->
   <div id="chatbot-widget">
@@ -71,6 +88,18 @@
   </div>
 
   <script>
+    const toggleBtn = document.getElementById("chatbot-toggle");
+    const widget = document.getElementById("chatbot-widget");
+    const header = document.getElementById("chatbot-header");
+
+    toggleBtn.onclick = () => {
+        widget.style.display = widget.style.display === "none" ? "flex" : "none";
+    };
+
+    header.onclick = () => {
+        widget.style.display = "none";
+    };
+
     async function sendMessage() {
       const input = document.getElementById("chatbot-input");
       const msg = input.value.trim();
